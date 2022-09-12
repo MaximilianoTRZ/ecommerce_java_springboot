@@ -13,10 +13,10 @@ Nuestro sitio web se dedicará principalmente a la comercialización camisteas d
 - Iván Leal:
 
 - Leandro Cocucci:
-      * Estudiante de 4to año
-      * Manejo básico de los lenguajes y tecnologías; Java, HTML/CSS/JS, SQL, Git y Github
-      * Utilización de Inglés: básico/intermedio
-      * Preferencias: interesado tanto en el desarrollo frontend como backend
+      - Estudiante de 4to año
+      - Manejo de los lenguajes y tecnologías (básico); Java, HTML/CSS/JS, SQL, Git y Github
+      - Manejo de Inglés: básico/intermedio
+      - Preferencias: interesado tanto en el desarrollo frontend como backend
 
 
 **Sitios de referencia**
