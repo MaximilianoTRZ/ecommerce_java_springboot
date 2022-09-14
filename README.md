@@ -11,6 +11,10 @@ Nuestro sitio web se dedicará principalmente a la comercialización camisteas d
 - Franco Herrera:
 
 - Iván Leal:
+      - Estudiante de 4to año
+      - Manejo de los lenguajes y tecnologías (básico); Java, HTML/CSS/JS, SQL, Git y Github, Python
+      - Manejo de Inglés: intermedio
+      - Preferencias: Me interesa mas el backend, pero tambien la parte de frontend para darle una buena experiencia de usuario al cliente.
 
 - Leandro Cocucci:
       - Estudiante de 4to año
