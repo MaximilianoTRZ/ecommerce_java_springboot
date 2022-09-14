@@ -6,7 +6,11 @@ Nuestro sitio web se dedicará principalmente a la comercialización camisteas d
 
 **Integrantes del equipo**
 
-- Maximiliano Rivero:
+- Maximiliano Rivero: 
+      - Estudiante de 5to año.
+      - Manejo de lenguajes Nodejs, Java, Python.
+      - Manejo de Inglés: intermedio.
+      - Preferencias: Me interesa cada parte del desarrollo de software, pero tengo especial interes en el backend aplicando lo aprendido en la carrera.
 
 - Franco Herrera:
       - Estudiante de 4to año.
