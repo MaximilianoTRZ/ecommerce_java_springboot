@@ -9,6 +9,11 @@ Nuestro sitio web se dedicará principalmente a la comercialización camisteas d
 - Maximiliano Rivero:
 
 - Franco Herrera:
+      - Estudiante de 4to año.
+      - Manejo de lenguajes Java, Python.
+      - Conocimiento de tecnológias como git/github, SQL.
+      - Manejo de Inglés: avanzado
+      - Preferencias: me gusta mas backend, todos los proyectos que he hecho han sido de back.      
 
 - Iván Leal:
       - Estudiante de 4to año
