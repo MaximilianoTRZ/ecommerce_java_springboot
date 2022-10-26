@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 public interface BaseController<E extends Base, ID extends Serializable> {
+
     public ResponseEntity<?> getAll();
 
     public ResponseEntity<?> getAll(Pageable pageable);

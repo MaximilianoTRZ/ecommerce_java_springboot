@@ -1,17 +1,21 @@
 package com.example.ApiEccommerce.controller;
 
+import com.example.ApiEccommerce.entities.Articulo;
 import com.example.ApiEccommerce.entities.Base;
 import com.example.ApiEccommerce.services.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.List;
 
 
 public abstract class BaseControllerImpl<E extends Base, S extends BaseServiceImpl<E, Long>> implements BaseController<E, Long> {
@@ -28,6 +32,7 @@ public abstract class BaseControllerImpl<E extends Base, S extends BaseServiceIm
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error. Por favor intente mas tarde.\"}");
         }
     }
+
 
     @GetMapping("/paged")
     public ResponseEntity<?> getAll(Pageable pageable){
