@@ -5,7 +5,9 @@
 <body>
 <nav th:replace="components/navbar :: nav_bar "></nav>
 
-<h1 th:text="${nombreVariable}"></h1>
+<h1 th:text="Bienvenido + ' ' + ${nombreVariable}"></h1>
+<p>Carrusel</p>
+<p>Nuevos productos</p>
 
 <nav th:replace="components/navbar :: footer "></nav>
 

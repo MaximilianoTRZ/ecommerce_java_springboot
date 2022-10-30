@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<header th:replace="components/header :: header "></header>
+
+<body>
+<nav th:replace="components/navbar :: nav_bar "></nav>
+
+
+
+<div class="alert alert-danger d-flex align-items-center" role="alert" >
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+    <div>
+        <h1> OCURRIO UN ERROR </h1>
+    </div>
+</div>
+
+<nav th:replace="components/navbar :: footer "></nav>
+</body>
+</html>

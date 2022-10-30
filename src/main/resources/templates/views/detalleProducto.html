@@ -7,12 +7,13 @@
 <div class="container">
     </br>
     <div class="row">
-      <div class="col-md-3" th:each="articulo  :${nombreVariable}" >
+      <div class="col-md-12"  >
         <div class="card" >
-          <img class="card-img-top" th:src="${articulo.foto}" alt="img">
+          <img class="card-img-top" th:src="${detalleArticulo.foto}" alt="img">
           <div class="card-body">
-            <h5 class="card-title" th:text="${articulo.nombre}">Card title</h5>
-            <a th:href="@{/api/v1/articulos/detalle/{id}(id=${articulo.id})}" class="btn btn-primary">Mas detalles</a>
+            <h5 class="card-title" th:text="${detalleArticulo.nombre}">Card title</h5>
+            <h4 class="card-title" th:text="${detalleArticulo.precio}">Card title</h4>
+            <h3 class="card-title" th:text="${detalleArticulo.descripcion}">Card title</h3>
             <a href="#" class="btn btn-warning">Añadir a carrito</a>
           </div>
         </div>
