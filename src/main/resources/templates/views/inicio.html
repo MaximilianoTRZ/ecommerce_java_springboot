@@ -5,9 +5,13 @@
 <body>
 <nav th:replace="components/navbar :: nav_bar "></nav>
 
-<h1 th:text="Bienvenido + ' ' + ${nombreVariable}"></h1>
-<p>Carrusel</p>
-<p>Nuevos productos</p>
+<div class="row">
+    <div class="col-lg-12">
+        <img th:src="@{${'/messi.jpg'}}" class="img-fluid" width="100%" />
+        <img th:src="@{${'/mbappe.jpg'}}" class="img-fluid" width="100%" />
+        <img th:src="@{${'/haaland.jpg'}}" class="img-fluid" width="100%" />
+    </div>
+</div>
 
 <nav th:replace="components/navbar :: footer "></nav>
 
