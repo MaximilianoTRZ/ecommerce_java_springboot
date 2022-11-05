@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -23,6 +24,10 @@ public class Articulo extends Base{
     private String descripcion;
 
     private String foto;
+
+    private int stock;
+
+    private Date fechaVigencia;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="fk_categoria")
