@@ -146,18 +146,5 @@ public class ArticuloController extends BaseControllerImpl<Articulo, ArticuloSer
             return "error";
         }
     }
-    /*
-    @GetMapping("/inicio")  //si quisiera que dos direcciones me llevaran a la misma pagina pondria {"/dir1","/dir2"}
-    public String inicio(Model model) throws Exception { //EL NOMBRE DEL METODO ES SOLO REPRESENTATIVO, NO SE UTILIZA
-        try {
-            String usuario = "Master";
-            model.addAttribute("nombreVariable", usuario);
-            return "views/inicio"; //ACA TIENE QUE IR EL NOMBRE DE LA PLANTILLA DONDE SE QUIERE USAR
-        } catch (Exception e) {
-            String mensaje = "hubo un error";
-            model.addAttribute("mensajeError", mensaje);
-            return "error";
-        }
-    }
-    */
+
 }
