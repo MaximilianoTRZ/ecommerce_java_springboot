@@ -146,7 +146,7 @@ public class ArticuloController extends BaseControllerImpl<Articulo, ArticuloSer
             return "error";
         }
     }
-
+    /*
     @GetMapping("/inicio")  //si quisiera que dos direcciones me llevaran a la misma pagina pondria {"/dir1","/dir2"}
     public String inicio(Model model) throws Exception { //EL NOMBRE DEL METODO ES SOLO REPRESENTATIVO, NO SE UTILIZA
         try {
@@ -159,4 +159,5 @@ public class ArticuloController extends BaseControllerImpl<Articulo, ArticuloSer
             return "error";
         }
     }
+    */
 }
