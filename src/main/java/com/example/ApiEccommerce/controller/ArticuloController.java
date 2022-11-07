@@ -120,6 +120,19 @@ public class ArticuloController extends BaseControllerImpl<Articulo, ArticuloSer
 
     }
 
+
+    @GetMapping("/editar")
+    public String editarProducto(Model model) {
+        try {
+            return "views/formulario_editar";
+        } catch (Exception e) {
+            String mensaje = "hubo un error";
+            model.addAttribute("mensajeError", e.getMessage());
+            return "error";
+        }
+
+    }
+
     @GetMapping("/crud")
     public String crud(Model model) throws Exception { //EL NOMBRE DEL METODO ES SOLO REPRESENTATIVO, NO SE UTILIZA
         try {
