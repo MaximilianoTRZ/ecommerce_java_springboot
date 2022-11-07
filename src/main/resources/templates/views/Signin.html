@@ -1,31 +1,65 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="es" xmlns:th="http://thymeleaf.org">
 <header th:replace="components/header :: header "></header>
 <body>
 <nav th:replace="components/navbar :: nav_bar "></nav>
+	
 
-<div class="container">
-    </br>
-    <form>
-        <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                   placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-        </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-        </div>
-        <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-    </br>
-</div>
+<section class="h-100 gradient-form" style="background-color: #eee;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-xl-10">
+        <div class="card rounded-3 text-black">
+          <div class="row g-0">
+            <div class="col-lg-6">
+              <div class="card-body p-md-5 mx-md-4">
 
+                <div class="text-center">
+                  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
+                    style="width: 185px;" alt="logo">
+                  
+                </div>
+
+                <form th:action="@{verificar}" th:object="${cuenta}">
+                  <p>Por favor ingrese su cuenta</p>
+
+                  <div class="form-outline mb-4">
+                  	<label class="form-label" for="form2Example11">Email</label>
+                    <input type="email" id="form2Example11" class="form-control"
+                      placeholder="Cuenta de correo"/>
+                    
+                  </div>
+
+                  <div class="form-outline mb-4">
+                  	<label class="form-label" for="form2Example22">Contraseña</label>
+                    <input type="password" id="form2Example22" class="form-control"/>
+                  </div>
+
+                  <div class="text-center pt-1 mb-5 pb-1">
+                    <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Iniciar sesión</button>
+                    <a class="text-muted" href="#!">¿Olvidaste la contraseña?</a>
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-center pb-4">
+                    <p class="mb-0 me-2">¿No tenés cuenta?</p>
+                    <button type="button" class="btn btn-outline-danger">Registrate</button>
+                  </div>
+
+                </form>
+
+              </div>
+            </div>
+            <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+              <div>
+              	<img th:src="@{${'/messi.jpg'}}" alt="Banner1" style="width:100%;width: 464px;height: 569px;">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <nav th:replace="components/navbar :: footer "></nav>
 </body>
 </html>

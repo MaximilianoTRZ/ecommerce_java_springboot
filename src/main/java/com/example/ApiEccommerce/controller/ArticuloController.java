@@ -43,7 +43,7 @@ public class ArticuloController extends BaseControllerImpl<Articulo, ArticuloSer
         }
 
     }
-
+    //Poner en cuenta
     @GetMapping("/signup")
     public String signup(Model model) {
         try {
@@ -56,17 +56,7 @@ public class ArticuloController extends BaseControllerImpl<Articulo, ArticuloSer
 
     }
 
-    @GetMapping("/signin")
-    public String signin(Model model) {
-        try {
-            return "views/Signin";
-        } catch (Exception e) {
-            String mensaje = "hubo un error";
-            model.addAttribute("mensajeError", mensaje);
-            return "error";
-        }
 
-    }
 
     @GetMapping("/detalle/{id}")
     public String detalleArticulo(Model model, @PathVariable("id") long id) {
