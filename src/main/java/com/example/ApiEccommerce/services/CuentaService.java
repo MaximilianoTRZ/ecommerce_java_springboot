@@ -1,6 +1,10 @@
 package com.example.ApiEccommerce.services;
 
+import org.springframework.security.core.userdetails.UserDetails;
+
 import com.example.ApiEccommerce.entities.Cuenta;
 
-public interface CuentaService extends BaseService <Cuenta, Long>{
+public interface CuentaService extends BaseService <Cuenta, Long>, UserDetails{
+	
+	
 }

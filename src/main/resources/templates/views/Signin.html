@@ -1,31 +1,97 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="es" xmlns:th="http://thymeleaf.org">
 <header th:replace="components/header :: header "></header>
 <body>
 <nav th:replace="components/navbar :: nav_bar "></nav>
+	
 
-<div class="container">
-    </br>
-    <form>
-        <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                   placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-        </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-        </div>
-        <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-    </br>
-</div>
+<section class="h-100 gradient-form" style="background-color: #eee;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-xl-10">
+        <div class="card rounded-3 text-black">
+          <div class="row g-0">
+            <div class="col-lg-6">
+              <div class="card-body p-md-5 mx-md-4">
 
+                <div class="text-center">
+                  <img th:src="@{${'/masterlogo.jpg'}}"
+                    style="width: 310px;" alt="logo">
+                  
+                </div>
+
+                <form th:action="@{/api/v1/cuenta/Signin/verificar}" method="post">
+                  <p>Por favor ingrese su cuenta</p>
+					<div th:if=${param.error}>
+						<div class="alert alert-danger">Usuario o contraseña
+							inválidos</div>
+					</div>
+
+					<div th:if=${param.logout}>
+						<div class="alert alert-info">Ha cerrado sesión exitosamente
+						</div>
+					</div>
+                  <div class="form-outline mb-4">
+                  	<label class="form-label" for="form2Example11">Email</label>
+                    <input type="email" id="username" class="form-control" autofocus="autofocus"
+                      placeholder="Cuenta de correo"/>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                  	<label class="form-label" for="form2Example22">Contraseña</label>
+                    <input type="password" id="password" class="form-control" placeholder="Digite su password"/>
+                  </div>
+
+                  <div class="text-center pt-1 mb-5 pb-1">
+                    <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit" name="login-submit" id="login-submit">Iniciar sesión</button>
+                    <a class="text-muted" href="#!">¿Olvidaste la contraseña?</a>
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-center pb-4">
+                    <p class="mb-0 me-2">¿No tenés cuenta?</p>
+					<a class="nav-link" th:href="@{/api/v1/articulos/signup}">Registrate</a>
+                  </div>
+
+                </form>
+
+              </div>
+            </div>
+            <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+              <div>
+              	<div class="container" style="
+				    padding-right: 0;
+				    padding-left: 0;
+				    margin-left: 0;
+				    margin-right: 0;
+				    margin-top:0px;
+				    width: 464px;
+				    ">
+				  <div id="myCarousel2" class="carousel slide" data-ride="carousel">
+				    <!-- Indicadores -->
+				    <ol class="carousel-indicators">
+				      <li data-target="#myCarousel2" data-slide-to="0" class="active"></li>
+				      <li data-target="#myCarousel2" data-slide-to="1"></li>
+				    </ol>
+				    <!-- Entorno para las diapositivas -->
+				    <div class="carousel-inner" style="width: 464px">
+				      <div class="item active">
+				        <img th:src="@{${'/messi.jpg'}}" alt="" style="width: 464px;height: 569px;">
+				      </div>
+				 
+				      <div class="item">
+				        <img th:src="@{${'/dibu.jpg'}}" alt="" style="width: 464px;height: 569px;">
+				      </div>
+				     
+				</div>
+				</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <nav th:replace="components/navbar :: footer "></nav>
 </body>
 </html>

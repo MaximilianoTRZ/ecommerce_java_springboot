@@ -5,30 +5,23 @@ import com.example.ApiEccommerce.entities.Articulo;
 import com.example.ApiEccommerce.services.ArticuloServiceImpl;
 import com.example.ApiEccommerce.services.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @Controller
+@CrossOrigin(origins = "*")  //en @Controller esto no es necesario?
 @RequestMapping(path = "api/v1/articulos")  //en @Controller esto no es necesario?
 public class ArticuloController extends BaseControllerImpl<Articulo, ArticuloServiceImpl> {
 
     @Autowired
     CategoriaService categoriaService;
-
-
-    /*Pagina de barra de busqueda sin paginar*/
-            @GetMapping("/busqueda")
-            public String busqueda(Model model, @RequestParam(value = "query", required = false) String q) {
+    @GetMapping("/busqueda")
+    public String busqueda(Model model, @RequestParam(value="query", required = false) String q) {
         try {
-            List<Articulo> articulos = servicio.findByTitle(q);
+            List <Articulo> articulos = servicio.findByTitle(q);
             model.addAttribute("listaArticulos", articulos);
             return "views/busqueda";
         } catch (Exception e) {
@@ -36,177 +29,9 @@ public class ArticuloController extends BaseControllerImpl<Articulo, ArticuloSer
             model.addAttribute("mensajeError", mensaje);
             return "error";
         }
+
     }
 
-    /*Pagina Producto no paginada*/
-    /*
-    @GetMapping("/lista")
-    public String ListaArticulos(Model model) throws Exception { //EL NOMBRE DEL METODO ES SOLO REPRESENTATIVO, NO SE UTILIZA
-        try {
-            List<Articulo> nombreVariable = servicio.findAll();
-            model.addAttribute("nombreVariable", nombreVariable);
-            return "views/productos"; //ACA TIENE QUE IR EL NOMBRE DE LA PLANTILLA DONDE SE QUIERE USAR
-        } catch (Exception e) {
-            String mensaje = "hubo un error";
-            model.addAttribute("mensajeError", mensaje);
-            return "error";
-        }
-    }
-    */
-
-    /*Pagina Producto paginada*/
-            @GetMapping("/lista")
-            public String ListaArticulosPaginados(@RequestParam Map<String, Object> params, Model model) throws Exception {
-        int page = params.get("page") != null ? (Integer.valueOf(params.get("page").toString()) - 1) : 0;
-        PageRequest pageRequest = PageRequest.of(page, 8);
-        Page<Articulo> pageArticulo = servicio.findAll(pageRequest);
-
-        int totalPage = pageArticulo.getTotalPages();
-        if(totalPage > 0) {
-            List<Integer> pages = IntStream.rangeClosed(1, totalPage).boxed().collect(Collectors.toList());
-            model.addAttribute("pages", pages);
-        }
-
-        model.addAttribute("nombreVariable", pageArticulo.getContent());
-        model.addAttribute("current", page + 1);
-        model.addAttribute("next", page + 2);
-        model.addAttribute("prev", page);
-        model.addAttribute("last", totalPage);
-        return "views/productosPaginado";
-    }
-
-
-
-    //comienzo funcion eliminar
-            @GetMapping("/confirmarEliminar/{id}")
-            public String eliminarProducto(@PathVariable long id, Model model) {
-                try {
-                    model.addAttribute("articulo", servicio.findById(id));
-                    return "views/eliminar";
-                } catch (Exception e) {
-                    String mensaje = "hubo un error";
-                    model.addAttribute("mensajeError", e.getMessage());
-                    return "error";
-                }
-            }
-
-            @GetMapping("/eliminar/{id}")
-            public String eliminar(@PathVariable long id) {
-                try {
-                    servicio.delete(id);
-                    return "redirect:/api/v1/articulos/crud";
-                } catch (Exception e) {
-                    return "error";
-                }
-            }
-    //fin funcion eliminar
-
-
-
-    //inicio funcion guardar un nuevo producto
-            @GetMapping("/nuevo")
-            public String crearNuevoProducto(Model model) {
-                try {
-                    Articulo nuevoArticulo = new Articulo();
-                    model.addAttribute("nuevoArticulo", nuevoArticulo);
-                    model.addAttribute("categorias", categoriaService.findAll());
-
-                    return "views/formulario_nuevo";
-                } catch (Exception e) {
-                    String mensaje = "hubo un error";
-                    model.addAttribute("mensajeError", e.getMessage());
-                    return "error";
-                }
-            }
-
-            @PostMapping("/guardarArticulo")
-            public String guardarArticulo(@ModelAttribute("nuevoArticulo") Articulo articulo) throws Exception {
-        servicio.save(articulo);
-        return "redirect:/api/v1/articulos/crud";
-    }
-    //fin funcion cargar nuevo producto
-
-
-    //Comienzo funcion editar
-            @GetMapping("/editar/{id}")
-            public String editarProducto(@PathVariable long id, Model model) throws Exception{
-                try {
-                    model.addAttribute("articulo", servicio.findById(id));
-                    model.addAttribute("categorias", categoriaService.findAll());
-                    return "views/formulario_editar";
-                } catch (Exception e) {
-                    model.addAttribute("mensajeError", e.getMessage());
-                    return "error";
-                }
-            }
-
-            @PostMapping("/actualizarArticulo/{id}")
-            public String ActualizarArticulo(@PathVariable long id, @ModelAttribute("articulo") Articulo articulo, Model modelo) throws Exception {
-        Articulo articuloExistente = servicio.findById(id);
-        articuloExistente.setNombre(articulo.getNombre());
-        articuloExistente.setFoto(articulo.getFoto());
-        articuloExistente.setPrecio(articulo.getPrecio());
-        articuloExistente.setCategoria(articulo.getCategoria());
-        articuloExistente.setDescripcion(articulo.getDescripcion());
-
-        servicio.update(id, articuloExistente);
-        return "redirect:/api/v1/articulos/crud";
-    }
-    //fin funcion editar
-
-    /*Pagina Crud no paginada*/
-            /*
-    @GetMapping("/crud")
-    public String crud(Model model) throws Exception { //EL NOMBRE DEL METODO ES SOLO REPRESENTATIVO, NO SE UTILIZA
-        try {
-            List<Articulo> nombreVariable = servicio.findAll();
-            model.addAttribute("nombreVariable", nombreVariable);
-            return "views/crud"; //ACA TIENE QUE IR EL NOMBRE DE LA PLANTILLA DONDE SE QUIERE USAR
-        } catch (Exception e) {
-            String mensaje = "hubo un error";
-            model.addAttribute("mensajeError", mensaje);
-            return "error";
-        }
-    }
-*/
-
-    /*Pagina Crud paginada*/
-            @GetMapping("/crud")
-            public String crudPaginados(@RequestParam Map<String, Object> params, Model model) throws Exception {
-        int page = params.get("page") != null ? (Integer.valueOf(params.get("page").toString()) - 1) : 0;
-        PageRequest pageRequest = PageRequest.of(page, 8);
-        Page<Articulo> pageArticulo = servicio.findAll(pageRequest);
-
-        int totalPage = pageArticulo.getTotalPages();
-        if(totalPage > 0) {
-            List<Integer> pages = IntStream.rangeClosed(1, totalPage).boxed().collect(Collectors.toList());
-            model.addAttribute("pages", pages);
-        }
-
-        model.addAttribute("nombreVariable", pageArticulo.getContent());
-        model.addAttribute("current", page + 1);
-        model.addAttribute("next", page + 2);
-        model.addAttribute("prev", page);
-        model.addAttribute("last", totalPage);
-        return "views/crudPaginado";
-    }
-
-    /*Pagina de inicio*/
-            @GetMapping("/inicio")  //si quisiera que dos direcciones me llevaran a la misma pagina pondria {"/dir1","/dir2"}
-            public String inicio(Model model) throws Exception { //EL NOMBRE DEL METODO ES SOLO REPRESENTATIVO, NO SE UTILIZA
-        try {
-            String usuario = "Master";
-            model.addAttribute("nombreVariable", usuario);
-            return "views/inicio"; //ACA TIENE QUE IR EL NOMBRE DE LA PLANTILLA DONDE SE QUIERE USAR
-        } catch (Exception e) {
-            String mensaje = "hubo un error";
-            model.addAttribute("mensajeError", mensaje);
-            return "error";
-        }
-    }
-
-
-    //Esto no va aca
     @GetMapping("/carrito")
     public String carrito(Model model) {
         try {
@@ -218,7 +43,7 @@ public class ArticuloController extends BaseControllerImpl<Articulo, ArticuloSer
         }
 
     }
-
+    //Poner en cuenta
     @GetMapping("/signup")
     public String signup(Model model) {
         try {
@@ -231,17 +56,7 @@ public class ArticuloController extends BaseControllerImpl<Articulo, ArticuloSer
 
     }
 
-    @GetMapping("/signin")
-    public String signin(Model model) {
-        try {
-            return "views/Signin";
-        } catch (Exception e) {
-            String mensaje = "hubo un error";
-            model.addAttribute("mensajeError", mensaje);
-            return "error";
-        }
 
-    }
 
     @GetMapping("/detalle/{id}")
     public String detalleArticulo(Model model, @PathVariable("id") long id) {
@@ -256,4 +71,70 @@ public class ArticuloController extends BaseControllerImpl<Articulo, ArticuloSer
         }
 
     }
+
+    @GetMapping("/eliminar")
+    public String eliminar(Model model) {
+        try {
+            return "views/eliminar";
+        } catch (Exception e) {
+            String mensaje = "hubo un error";
+            model.addAttribute("mensajeError", mensaje);
+            return "error";
+        }
+
+    }
+
+    //Con este metodo lo que hacemos es guardar el objeto en la base de datos
+    @PostMapping("/guardarArticulo")
+    public String guardarArticulo(@ModelAttribute("nuevoArticulo") Articulo articulo) throws Exception {
+        servicio.save(articulo);
+        return "redirect:/api/v1/articulos/crud";
+    }
+
+
+    //En este metodo lo que hago es crear el objeto, el cual va a ser cargado con los datos que se completan en el formulario
+    //Envio las categorias porque el articulo tiene asociada una categoria
+    @GetMapping("/nuevo")
+    public String crearNuevoProducto(Model model) {
+        try {
+            Articulo nuevoArticulo= new Articulo();
+            model.addAttribute("nuevoArticulo", nuevoArticulo);
+            model.addAttribute("categorias", categoriaService.findAll());
+
+            return "views/formulario";
+        } catch (Exception e) {
+            String mensaje = "hubo un error";
+            model.addAttribute("mensajeError", e.getMessage());
+            return "error";
+        }
+
+    }
+
+    @GetMapping("/crud")
+    public String crud(Model model) throws Exception { //EL NOMBRE DEL METODO ES SOLO REPRESENTATIVO, NO SE UTILIZA
+        try {
+            List<Articulo> nombreVariable = servicio.findAll();
+            model.addAttribute("nombreVariable", nombreVariable);
+            return "views/crud"; //ACA TIENE QUE IR EL NOMBRE DE LA PLANTILLA DONDE SE QUIERE USAR
+        } catch (Exception e) {
+            String mensaje = "hubo un error";
+            model.addAttribute("mensajeError", mensaje);
+            return "error";
+        }
+    }
+
+
+    @GetMapping("/lista")
+    public String ListaArticulos(Model model) throws Exception { //EL NOMBRE DEL METODO ES SOLO REPRESENTATIVO, NO SE UTILIZA
+        try {
+            List<Articulo> nombreVariable = servicio.findAll();
+            model.addAttribute("nombreVariable", nombreVariable);
+            return "views/productos"; //ACA TIENE QUE IR EL NOMBRE DE LA PLANTILLA DONDE SE QUIERE USAR
+        } catch (Exception e) {
+            String mensaje = "hubo un error";
+            model.addAttribute("mensajeError", mensaje);
+            return "error";
+        }
+    }
+
 }
