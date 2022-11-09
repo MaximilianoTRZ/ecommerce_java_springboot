@@ -26,7 +26,8 @@ public class ArticuloServiceImpl extends BaseServiceImpl<Articulo, Long> impleme
             List<Articulo> entities= articuloRepository.findByTitle(q);
             return entities;
         }catch (Exception e){
-            return null;
+            throw new Exception(e.getMessage());
         }
     }
+
 }

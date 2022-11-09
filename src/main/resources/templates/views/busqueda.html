@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <header th:replace="components/header :: header "></header>
-<body>
+<body >
+
 <nav th:replace="components/navbar :: nav_bar "></nav>
 
 <div class="container">
     </br>
-    <div class="row">
+    <div class="row ">
       <div class="col-md-3" th:each="articulo  :${listaArticulos}" >
         <div class="card" >
           <img class="card-img-top" th:src="${articulo.foto}" alt="img">
