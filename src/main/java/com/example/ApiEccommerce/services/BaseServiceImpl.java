@@ -10,6 +10,8 @@ import com.example.ApiEccommerce.entities.Base;
 import com.example.ApiEccommerce.repositories.BaseRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 public abstract class BaseServiceImpl<E extends Base, ID extends Serializable> implements BaseService<E,ID>{
     protected BaseRepository<E,ID> baseRepository;
@@ -92,6 +94,14 @@ public abstract class BaseServiceImpl<E extends Base, ID extends Serializable> i
             throw new Exception(e.getMessage());
         }
     }
+
+
+
+
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
 }

@@ -15,7 +15,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Audited
-
 @Entity
 @Table(name= "cuenta")
 
