@@ -1,6 +1,5 @@
 package com.example.ApiEccommerce.controller;
 
-
 import com.example.ApiEccommerce.entities.Articulo;
 import com.example.ApiEccommerce.services.ArticuloServiceImpl;
 import com.example.ApiEccommerce.services.CategoriaService;
@@ -23,7 +22,6 @@ public class ArticuloController extends BaseControllerImpl<Articulo, ArticuloSer
     @Autowired
     CategoriaService categoriaService;
 
-
     /*Pagina de barra de busqueda sin paginar*/
     @GetMapping("/busqueda")
     public String busqueda(Model model, @RequestParam(value = "query", required = false) String q) {
@@ -41,7 +39,6 @@ public class ArticuloController extends BaseControllerImpl<Articulo, ArticuloSer
             return "error";
         }
     }
-
 
     /*Pagina Producto paginada*/
     @GetMapping("/lista")
@@ -62,7 +59,6 @@ public class ArticuloController extends BaseControllerImpl<Articulo, ArticuloSer
         model.addAttribute("last", totalPage);
         return "views/productosPaginado";
     }
-
 
     //comienzo funcion eliminar
     @GetMapping("/confirmarEliminar/{id}")
@@ -88,7 +84,6 @@ public class ArticuloController extends BaseControllerImpl<Articulo, ArticuloSer
     }
     //fin funcion eliminar
 
-
     //inicio funcion guardar un nuevo producto
     @GetMapping("/nuevo")
     public String crearNuevoProducto(Model model) {
@@ -111,7 +106,6 @@ public class ArticuloController extends BaseControllerImpl<Articulo, ArticuloSer
         return "redirect:/api/v1/articulos/crud";
     }
     //fin funcion cargar nuevo producto
-
 
     //Comienzo funcion editar
     @GetMapping("/editar/{id}")
@@ -139,7 +133,6 @@ public class ArticuloController extends BaseControllerImpl<Articulo, ArticuloSer
         return "redirect:/api/v1/articulos/crud";
     }
     //fin funcion editar
-
 
     /*Pagina Crud paginada*/
     @GetMapping("/crud")

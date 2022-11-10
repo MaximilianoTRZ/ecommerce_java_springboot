@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <header th:replace="components/header :: header "></header>
-<body>
+<body style="display:flex;flex-direction: column; min-height: 100vh;max-width: 100%;">
 <nav th:replace="components/navbar :: nav_bar "></nav>
 
 <div class="container">
@@ -22,7 +22,7 @@
 
     <div class="row">
         <div class="col-md-2"></div>
-        <div class="col-md-8">
+        <div class="col-md-8 d-flex justify-content-center">
             <nav aria-label="Pagination">
                 <ul class="pagination justify-content-center">
                     <li class="page-item" th:classappend="${prev == 0 ? 'disabled': ''}">
