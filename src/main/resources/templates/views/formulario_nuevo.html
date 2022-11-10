@@ -29,7 +29,7 @@
                             <div class="form-group col-md-6">
                                 <label for="categoria">Categoria: </label>
                                 <!--- El th:field en este caso se queda con el objeto categoria seleccionado --->
-                                <select class="form-control" id="categoria" th:field="*{categoria}">
+                                <select class="form-control " id="categoria" th:field="*{categoria}">
                                     <option th:each="categoria: ${categorias}" th:value="${categoria.id}"
                                             th:text="${categoria.nombreCategoria}">tipos de categorias
                                     </option>
