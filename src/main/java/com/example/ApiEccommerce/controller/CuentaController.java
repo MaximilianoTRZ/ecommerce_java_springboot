@@ -3,9 +3,10 @@ package com.example.ApiEccommerce.controller;
 
 
 import com.example.ApiEccommerce.entities.Cuenta;
+import com.example.ApiEccommerce.repositories.CuentaRepository;
 import com.example.ApiEccommerce.services.CuentaServiceImpl;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,8 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @CrossOrigin(origins = "*")
 @RequestMapping(path = "api/v1/cuenta")
 public class CuentaController extends BaseControllerImpl<Cuenta, CuentaServiceImpl>{
-	
-	CuentaServiceImpl cs;
+	@Autowired
+	CuentaRepository cuentaRepository;
 	
     @GetMapping("/Signin")
     public String signin() {
@@ -31,16 +32,9 @@ public class CuentaController extends BaseControllerImpl<Cuenta, CuentaServiceIm
 
     }
 	
-    @PostMapping("/Signin/verificar")
-    public String verificar(Model model,@RequestParam(value="username") String username) {
-        try {
-            return "views/inicio";
-        } catch (Exception e) {
-            String mensaje = "hubo un error";
-            model.addAttribute("mensajeError", mensaje);
-            return "error";
-        }
-
+    @GetMapping("/Signin/verificar")
+    public String verificar() {
+           return "views/inicio";
     }
     
 

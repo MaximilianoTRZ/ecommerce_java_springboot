@@ -20,15 +20,15 @@ import java.util.List;
 
 public class Cuenta extends Base{
 
-    private String usuario;
+    private String email;
 
-    private String contrasenia;
+    private String password;
 
     private Date fechaFinVigencia;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name="cuenta_rol",
-            joinColumns =@JoinColumn(name ="cuenta"),
+            joinColumns =@JoinColumn(name ="email"),
             inverseJoinColumns =
             @JoinColumn(name="rol_id"))
     private List<Rol> rol = new ArrayList<Rol>();
