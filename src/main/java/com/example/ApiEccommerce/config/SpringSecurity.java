@@ -76,7 +76,7 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
 		.and().logout()
 			.invalidateHttpSession(true)
 			.clearAuthentication(true)
-			.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+			.logoutRequestMatcher(new AntPathRequestMatcher("/api/v1/cuenta/Signin/logout"))
 			.logoutSuccessUrl("/login?logout")
 			.permitAll();
 	}
