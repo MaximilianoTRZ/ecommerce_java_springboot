@@ -37,11 +37,12 @@ public class CuentaServiceImpl extends BaseServiceImpl<Cuenta, Long> implements 
 		if(cuenta == null) {
 			throw new UsernameNotFoundException("Usuario o password inválidos");
 		}
-		return new User(cuenta.getEmail(),cuenta.getPassword(), mapearAutoridadesRoles(cuenta.getRol()));
+		System.out.print(new User(cuenta.getEmail(),cuenta.getPassword(), mapearAutoridadesRoles(cuenta.getRoles())));
+		return new User(cuenta.getEmail(),cuenta.getPassword(), mapearAutoridadesRoles(cuenta.getRoles()));
 	}
 
 	private Collection<? extends GrantedAuthority> mapearAutoridadesRoles(Collection<Rol> roles){
-		return roles.stream().map(role -> new SimpleGrantedAuthority(role.getNombreRol())).collect(Collectors.toList());
+		return roles.stream().map(role -> new SimpleGrantedAuthority(role.getNombre())).collect(Collectors.toList());
 	}
 
     

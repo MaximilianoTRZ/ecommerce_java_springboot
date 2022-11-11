@@ -7,6 +7,9 @@ import com.example.ApiEccommerce.repositories.CuentaRepository;
 import com.example.ApiEccommerce.services.CuentaServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,6 +28,15 @@ public class CuentaController extends BaseControllerImpl<Cuenta, CuentaServiceIm
     @GetMapping("/Signin")
     public String signin() {
         try {
+        	
+        	Object user= SecurityContextHolder.getContext();
+        	
+        	if(user instanceof UserDetails){
+        		String username = (String) user;
+        	} else {
+        		String username = user.toString();
+        	}
+
             return "views/Signin";
         } catch (Exception e) {
             return "error";
