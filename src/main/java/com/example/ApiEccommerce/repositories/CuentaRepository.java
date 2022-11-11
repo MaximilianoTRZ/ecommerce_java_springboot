@@ -1,14 +1,16 @@
 package com.example.ApiEccommerce.repositories;
 
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
+import org.springframework.stereotype.Repository;
 
 import com.example.ApiEccommerce.entities.Cuenta;
 
 
 
-
-public interface CuentaRepository extends BaseRepository<Cuenta, Long>,JpaRepositoryImplementation<Cuenta,Long>{
+@Repository
+public interface CuentaRepository extends BaseRepository<Cuenta, Long>,JpaRepository<Cuenta,Long>{
 	public Cuenta findByEmail(String email);
 	
 }
