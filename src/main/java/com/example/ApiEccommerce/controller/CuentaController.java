@@ -32,7 +32,7 @@ public class CuentaController extends BaseControllerImpl<Cuenta, CuentaServiceIm
     }
 	
     @PostMapping("/Signin/verificar")
-    public String verificar(Model model,@RequestParam(value="username") String username) {
+    public String verificar(Model model) {
         try {
             return "views/inicio";
         } catch (Exception e) {
