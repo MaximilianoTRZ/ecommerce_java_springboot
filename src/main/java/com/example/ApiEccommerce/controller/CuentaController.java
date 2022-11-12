@@ -25,18 +25,7 @@ public class CuentaController extends BaseControllerImpl<Cuenta, CuentaServiceIm
     public String signin() {
         return "views/Signin";
     }
-/*
-	
-    @PostMapping("/Signin/verificar")
-    public String verificar(Model model) {
-        try {
-            return "views/inicio";
-        } catch (Exception e) {
-            String mensaje = "hubo un error";
-            model.addAttribute("mensajeError", mensaje);
-            return "error";
-        }
-*/
+
     @GetMapping("/Signin/verificar")
     public String verificar(Model model) {
         return "views/inicio";
