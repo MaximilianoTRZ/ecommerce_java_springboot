@@ -11,6 +11,6 @@ import com.example.ApiEccommerce.entities.Cuenta;
 
 @Repository
 public interface CuentaRepository extends BaseRepository<Cuenta, Long>,JpaRepository<Cuenta,Long>{
-    public Cuenta findByEmail(String email);
-
+	public Cuenta findByEmail(String email);
+	
 }

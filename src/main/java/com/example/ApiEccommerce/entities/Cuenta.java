@@ -21,21 +21,21 @@ import java.util.Date;
 @Table(name= "cuenta")
 
 public class Cuenta extends Base{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
     private String email;
 
     private String password;
 
     private Date fechaFinVigencia;
 
-    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "cuenta_roles",
-            joinColumns = @JoinColumn(name = "cuenta_id",referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "rol_id",referencedColumnName = "id")
-    )
-    private Collection<Rol> roles;
+	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@JoinTable(
+			name = "cuenta_roles",
+			joinColumns = @JoinColumn(name = "cuenta_id",referencedColumnName = "id"),
+			inverseJoinColumns = @JoinColumn(name = "rol_id",referencedColumnName = "id")
+			)
+	private Collection<Rol> roles;
 }
