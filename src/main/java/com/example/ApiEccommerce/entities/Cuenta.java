@@ -5,10 +5,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.envers.Audited;
 
+
 import javax.persistence.*;
-import java.util.ArrayList;
+
+import java.util.Collection;
 import java.util.Date;
-import java.util.List;
+
 
 
 @Data
@@ -19,17 +21,21 @@ import java.util.List;
 @Table(name= "cuenta")
 
 public class Cuenta extends Base{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    private String usuario;
+    private String email;
 
-    private String contrasenia;
+    private String password;
 
     private Date fechaFinVigencia;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name="cuenta_rol",
-            joinColumns =@JoinColumn(name ="cuenta"),
-            inverseJoinColumns =
-            @JoinColumn(name="rol_id"))
-    private List<Rol> rol = new ArrayList<Rol>();
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "cuenta_roles",
+            joinColumns = @JoinColumn(name = "cuenta_id",referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "rol_id",referencedColumnName = "id")
+    )
+    private Collection<Rol> roles;
 }
