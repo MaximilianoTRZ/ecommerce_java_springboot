@@ -30,4 +30,11 @@ public class Cliente extends Base{
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_cuenta")
     private Cuenta cuenta;
+
+    public Cliente( String nombre, String apellido, Domicilio domicilio, Cuenta cuenta) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.domicilio = domicilio;
+        this.cuenta = cuenta;
+    }
 }

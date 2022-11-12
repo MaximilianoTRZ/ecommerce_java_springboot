@@ -24,6 +24,8 @@ public class Cuenta extends Base{
 
     private String contrasenia;
 
+    private String email;
+
     private Date fechaFinVigencia;
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -32,4 +34,10 @@ public class Cuenta extends Base{
             inverseJoinColumns =
             @JoinColumn(name="rol_id"))
     private List<Rol> rol = new ArrayList<Rol>();
+
+    public Cuenta( String usuario, String contrasenia, String email) {
+        this.usuario = usuario;
+        this.contrasenia = contrasenia;
+        this.email = email;
+    }
 }
