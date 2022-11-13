@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<header th:replace="components/header :: header "></header>
+<body>
+<nav th:replace="components/navbar :: nav_bar "></nav>
+
+</br>
+<div class="container">
+    <table class="table table-light">
+        <thead>
+        <tr>
+            <th>Codigo de producto</th>
+            <th>Nombre</th>
+            <th>Cantidad</th>
+            <th>Precio Unitario</th>
+            <th>Precio Cantidad</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>00001</td>
+                <td>Camiseta Seleccion Argentina</td>
+                <td>3</td>
+                <td>15000</td>
+                <td>45000</td>
+            </tr>
+            <tr>
+                <td>00002</td>
+                <td>Camiseta Seleccion Argentina</td>
+                <td>3</td>
+                <td>15000</td>
+                <td>45000</td>
+            </tr>
+            <tr>
+                <td>00003</td>
+                <td>Camiseta Seleccion Argentina</td>
+                <td>3</td>
+                <td>15000</td>
+                <td>45000</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</br>
+
+<nav th:replace="components/navbar :: footer "></nav>
+</body>
+</html>

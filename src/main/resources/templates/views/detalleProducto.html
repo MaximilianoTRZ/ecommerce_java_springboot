@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<header th:replace="components/header :: header "></header>
+<body style="display:flex;flex-direction: column; min-height: 100vh;max-width: 100%;">
+<nav th:replace="components/navbar :: nav_bar "></nav>
+
+<div class="container">
+    </br>
+    <div class="row mt-5" th:object="${detalleArticulo}">
+        <div class="col-md-4">
+            <img class="card-img-top" th:src="*{foto}" alt="img">
+        </div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title" th:text="*{nombre}">Card title</h3>
+                    <h4 class="card-title" th:text="'$' + *{precio}">Card title</h4>
+                    <h5 class="card-title" th:text="*{descripcion}">Card title</h5>
+                    <a href="#" class="btn btn-warning">Añadir a carrito</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </br>
+
+</div>
+
+<nav th:replace="components/navbar :: footer "></nav>
+</body>
+</html>
