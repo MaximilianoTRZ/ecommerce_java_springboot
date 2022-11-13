@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <header th:replace="components/header :: header "></header>
-<body>
+<body style="display:flex;flex-direction: column; min-height: 100vh;max-width: 100%;">
 <nav th:replace="components/navbar :: nav_bar "></nav>
 
 <div class="container">
@@ -9,7 +9,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form  method="post">
+                    <form  >
                         <div class="row g-3 text-center">
                             <div class="form-group col-md-12">
                                 <h4>¿Esta seguro de eliminar este videojuego? </h4>
@@ -17,12 +17,10 @@
                         </div>
                         <div class="row m-3">
                             <div class="col-md-6">
-                                <button class="btn btn-outline-secondary" type="submit" style="width:100%">
-                                    Si
-                                </button>
+                                <a th:href="@{/api/v1/articulos/eliminar/{id}(id=${articulo.id})}"  class="btn btn-danger " style="width:100%">Si</a>
                             </div>
                             <div class="col-md-6">
-                                <a class="btn btn-success"  style="width:100%">No</a>
+                                <a th:href="@{/api/v1/articulos/crud}" class="btn btn-success"  style="width:100%">No</a>
                             </div>
                         </div>
                     </form>
@@ -31,7 +29,7 @@
         </div>
     </div>
 </div>
-
+<br>
 
 <nav th:replace="components/navbar :: footer "></nav>
 </body>

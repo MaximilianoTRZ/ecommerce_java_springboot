@@ -18,26 +18,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @CrossOrigin(origins = "*")
 @RequestMapping(path = "api/v1/cuenta")
 public class CuentaController extends BaseControllerImpl<Cuenta, CuentaServiceImpl>{
-	@Autowired
-	CuentaRepository cuentaRepository;
+    @Autowired
+    CuentaRepository cuentaRepository;
 
-	@GetMapping("/Signin")
+    @GetMapping("/Signin")
     public String signin() {
-        return "views/Signin";    
+        return "views/Signin";
     }
 
     @GetMapping("/Signin/verificar")
     public String verificar(Model model) {
-    	return "views/inicio";
+        return "views/inicio";
     }
-    
+
     @GetMapping("/Signin/logout")
     public String logOut() {
 
-         return "views/inicio";
+        return "views/inicio";
     }
-    
-    
-  
+
+
+
 
 }

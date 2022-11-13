@@ -26,35 +26,45 @@ public class Rol extends Base{
 	private Long id;
 	private String nombre;
 
-	public Long getId() {
-		return id;
-	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String nombre;
 
-	public String getNombre() {
-		return nombre;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public Rol(Long id, String nombre) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-	}
+    public String getNombre() {
+        return nombre;
+    }
 
-	public Rol() {
-		
-	}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-	public Rol(String nombre) {
-		super();
-		this.nombre = nombre;
-	}
+    public Rol(Long id, String nombre) {
+        super();
+        this.id = id;
+        this.nombre = nombre;
+    }
+
+    public Rol() {
+
+    }
+
+    public Rol(String nombre) {
+        super();
+        this.nombre = nombre;
+    }
 
 }

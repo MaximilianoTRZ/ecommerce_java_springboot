@@ -25,61 +25,61 @@ import com.example.ApiEccommerce.services.CuentaService;
 @Configuration
 @EnableWebSecurity
 public class SpringSecurity extends WebSecurityConfigurerAdapter {
-	
-	@Autowired
-	private CuentaService cuentaServicio;
-	
-	@Bean
-	  public InMemoryUserDetailsManager userDetailsService() {
-	    UserDetails user = User.withUsername("user")
-	            .password("{noop}password")
-	            .roles("USER")
-	            .build();
-	    return new InMemoryUserDetailsManager(user);
-	  }
-	
-	
-	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
-	
-	@Bean
-	public DaoAuthenticationProvider authenticationProvider() {
-		DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
-		auth.setUserDetailsService(cuentaServicio);
-		auth.setPasswordEncoder(passwordEncoder());
-		return auth;
-	}
-	
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		
-		auth.authenticationProvider(authenticationProvider());
-		
-	}
-	
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers(
-				"/registro**",
-				"/js/**",
-				"/css/**",
-				"/img/**").permitAll()
-		.anyRequest().authenticated()
-		.and().formLogin()
-			.loginPage("/api/v1/cuenta/Signin")
-			.loginProcessingUrl("/api/v1/cuenta/Signin/verificar")
-			.usernameParameter("username")
-			.passwordParameter("password")
-			.permitAll()
-		.and().logout()
-			.invalidateHttpSession(true)
-			.clearAuthentication(true)
-			.logoutRequestMatcher(new AntPathRequestMatcher("/api/v1/cuenta/Signin/logout"))
-			.logoutSuccessUrl("/login?logout")
-			.permitAll();
-	}
-	
-	
+
+    @Autowired
+    private CuentaService cuentaServicio;
+
+    @Bean
+    public InMemoryUserDetailsManager userDetailsService() {
+        UserDetails user = User.withUsername("user")
+                .password("{noop}password")
+                .roles("USER")
+                .build();
+        return new InMemoryUserDetailsManager(user);
+    }
+
+
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
+        auth.setUserDetailsService(cuentaServicio);
+        auth.setPasswordEncoder(passwordEncoder());
+        return auth;
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+
+        auth.authenticationProvider(authenticationProvider());
+
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests().antMatchers(
+                        "/registro**",
+                        "/js/**",
+                        "/css/**",
+                        "/img/**").permitAll()
+                .anyRequest().authenticated()
+                .and().formLogin()
+                .loginPage("/api/v1/cuenta/Signin")
+                .loginProcessingUrl("/api/v1/cuenta/Signin/verificar")
+                .usernameParameter("username")
+                .passwordParameter("password")
+                .permitAll()
+                .and().logout()
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .logoutRequestMatcher(new AntPathRequestMatcher("/api/v1/cuenta/Signin/logout"))
+                .logoutSuccessUrl("/login?logout")
+                .permitAll();
+    }
+
+
 }
