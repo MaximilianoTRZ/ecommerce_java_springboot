@@ -61,25 +61,20 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers(
-                        "/registro**",
-                        "/js/**",
-                        "/css/**",
-                        "/img/**").permitAll()
-				.antMatchers("/api/v1/inicio").anonymous()
-				.antMatchers("/api/v1/articulos/carrito").authenticated()
-                .and().formLogin()
+        http.authorizeRequests()
+				.antMatchers("/api/v1/articulos/carrito","/api/v1/cuenta/logout").authenticated()
+	            .and().formLogin()
                 .loginPage("/api/v1/cuenta/Signin")
                 .loginProcessingUrl("/api/v1/cuenta/Signin/verificar")
                 .usernameParameter("username")
                 .passwordParameter("password")
-                .permitAll()
                 .and().logout()
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/api/v1/cuenta/Signin/logout"))
-                .logoutSuccessUrl("/login?logout")
-                .permitAll();
+                .logoutSuccessUrl("/api/v1/inicio");
+      
+        
     }
 
 

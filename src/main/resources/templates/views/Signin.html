@@ -10,11 +10,13 @@
 <nav th:replace="components/navbar :: nav_bar "></nav>
 <br>
 <br>
-<section class="gradient-form" style="background-color: #eee;height: 875px;margin-top: -40px;">
+
+<div class="bg-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('https://s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2018/01/26091448/Argentina-Holanda-hinchada-Brasil-2014-1920-1.jpg');height: 100vh;margin-top: -127px;">
+
     <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100" >
             <div class="col-xl-10">
-                <div class="card rounded-3 text-black" style="width:100%;margin-top:-355px;">
+                <div class="card rounded-3 text-black" style="width:100%;margin-top:-200px;border-radius: 20px;">
                     <div class="row g-0"  style="width:600px">
                         <div class="col-lg-6" style="margin-left: auto;">
                             <div class="card-body p-md-5 mx-md-4">
@@ -60,14 +62,15 @@
                                 <p class="mb-0 me-2">¿No tenés cuenta?</p>
                                 <a class="nav-link" th:href="@{/api/v1/articulos/signup}">Registrate</a>
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
-<!-- Latest compiled and minified JavaScript -->
+</div>
+
 <script
         src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
