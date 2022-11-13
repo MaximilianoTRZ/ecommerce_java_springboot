@@ -7,6 +7,9 @@ import com.example.ApiEccommerce.repositories.CuentaRepository;
 import com.example.ApiEccommerce.services.CuentaServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,20 +26,24 @@ public class CuentaController extends BaseControllerImpl<Cuenta, CuentaServiceIm
 
     @GetMapping("/Signin")
     public String signin() {
+    	
         return "views/Signin";
     }
 
     @GetMapping("/Signin/verificar")
     public String verificar(Model model) {
+
+    	
         return "views/inicio";
     }
 
     @GetMapping("/Signin/logout")
     public String logOut() {
-
         return "views/inicio";
     }
+    
 
+    
 
 
 
