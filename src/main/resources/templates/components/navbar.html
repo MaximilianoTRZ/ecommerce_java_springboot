@@ -7,7 +7,6 @@
       <a class="nav-link" th:href="@{/api/v1/articulos/lista}">Productos</a>
     </li>
   </ul>
-
   <form class="d-inline-flex " style="width: 60%" th:action="@{/api/v1/articulos/busqueda}">
     <input class="form-control mr-sm-2" type="search" placeholder="Buscar camiseta" aria-label="Search" style="width: 80%" name="query">
     <button class="btn btn-outline-secundary my-2 my-sm-0" type="submit">Buscar</button>
@@ -21,8 +20,8 @@
       <a class="nav-link" th:href="@{/api/v1/articulos/carrito}">Carrito</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" th:href="@{/api/v1/cuenta/Signin}">Sign in</a>
-    </li>
+		<a class="nav-link" th:href="@{/api/v1/cuenta/Signin}">Sign in</a>     
+    </li>    
     <li class="nav-item">
       <a class="nav-link" th:href="@{/api/v1/articulos/signup}">Sign up</a>
     </li>

@@ -66,7 +66,8 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
                         "/js/**",
                         "/css/**",
                         "/img/**").permitAll()
-                .anyRequest().authenticated()
+				.antMatchers("/api/v1/inicio").anonymous()
+				.antMatchers("/api/v1/articulos/carrito").authenticated()
                 .and().formLogin()
                 .loginPage("/api/v1/cuenta/Signin")
                 .loginProcessingUrl("/api/v1/cuenta/Signin/verificar")
