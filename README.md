@@ -1,4 +1,4 @@
-# Master Sport Ecommerce
+# Master Sport Ecommerce ⚡
 ## Grupo_4 
 
 Nuestro sitio web se dedicará principalmente a la comercialización camisteas de fútbol de las selecciones de todo el mundo. También existe la posibilidad en un futuro, de ampliar el negocio a camisetas de los clubes más reconocidos de Argentina. Nuestro público objetivo son todos aquellos apasionados por el fútbol mundial y seguidores de las competiciones entre países.
