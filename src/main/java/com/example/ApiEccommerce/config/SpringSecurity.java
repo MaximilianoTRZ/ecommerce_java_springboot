@@ -62,17 +62,24 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-				.antMatchers("/api/v1/articulos/carrito","/api/v1/cuenta/logout").authenticated()
-	            .and().formLogin()
-                .loginPage("/api/v1/cuenta/Signin")
-                .loginProcessingUrl("/api/v1/cuenta/Signin/verificar")
-                .usernameParameter("username")
-                .passwordParameter("password")
-                .and().logout()
+
+				.antMatchers("/api/v1/articulos/carrito","/api/v1/articulos/crud","/api/v1/cuenta/logout")
+                .authenticated()
+
+                .and()
+                .formLogin()
+                .loginPage("/api/v1/cuenta/Signin") //vista
+                .loginProcessingUrl("/api/v1/cuenta/Signin/verificar") //accion
+                .defaultSuccessUrl("/api/v1/inicio", true)
+                .usernameParameter("username") //tiene q ser el mismos de la vista
+                .passwordParameter("password") //tiene q ser el mismos de la vista
+
+                .and()
+                .logout()
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
-                .logoutRequestMatcher(new AntPathRequestMatcher("/api/v1/cuenta/Signin/logout"))
-                .logoutSuccessUrl("/api/v1/inicio");
+                .logoutRequestMatcher(new AntPathRequestMatcher("/api/v1/cuenta/Signin/logout")) //accion
+                .logoutSuccessUrl("/api/v1/inicio"); //vista
       
         
     }
