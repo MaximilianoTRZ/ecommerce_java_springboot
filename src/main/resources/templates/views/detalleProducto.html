@@ -4,11 +4,16 @@
 <header th:replace="components/header :: header "></header>
 <body style="display:flex;flex-direction: column; min-height: 100vh;max-width: 100%;">
 <nav th:replace="components/navbar :: nav_bar "></nav>
+<script th:inline="javascript">
+    function productoAgregado() {
+        alert('Producto agregado al carrito!')
+    }
+</script>
 
 <div class="container">
     </br>
     <div class="row mt-5" th:object="${detalleArticulo}">
-        <div class="col-md-4" >
+        <div class="col-md-4">
             <img class="card-img-top" th:src="*{foto}" alt="img">
         </div>
         <div class="col-md-8">
@@ -17,7 +22,7 @@
                     <h3 class="card-title" th:text="*{nombre}">Card title</h3>
                     <h4 class="card-title" th:text="'$' + *{precio}">Card title</h4>
                     <h5 class="card-title" th:text="*{descripcion}">Card title</h5>
-                    <a href="#" class="btn btn-warning" sec:authorize="isAuthenticated()">Añadir a carrito</a>
+                    <a th:href="@{/api/v1/articulos/agregarProducto/{id}(id=${detalleArticulo.id})}" sec:authorize="isAuthenticated()" th:onclick="productoAgregado()" class="btn btn-info mb-1">Añadir a carrito</a>
                 </div>
             </div>
         </div>

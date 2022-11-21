@@ -5,45 +5,44 @@
 <body>
 <nav th:replace="components/navbar :: nav_bar "></nav>
 
-</br>
-<div class="container">
-    <table class="table table-light">
-        <thead>
-        <tr>
-            <th>Codigo de producto</th>
-            <th>Nombre</th>
-            <th>Cantidad</th>
-            <th>Precio Unitario</th>
-            <th>Precio Cantidad</th>
-        </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>00001</td>
-                <td>Camiseta Seleccion Argentina</td>
-                <td>3</td>
-                <td>15000</td>
-                <td>45000</td>
-            </tr>
-            <tr>
-                <td>00002</td>
-                <td>Camiseta Seleccion Argentina</td>
-                <td>3</td>
-                <td>15000</td>
-                <td>45000</td>
-            </tr>
-            <tr>
-                <td>00003</td>
-                <td>Camiseta Seleccion Argentina</td>
-                <td>3</td>
-                <td>15000</td>
-                <td>45000</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+<script th:inline="javascript">
+    function realizarCompra() {
+        alert('Compra realizada con exito!')
+    }
+</script>
 
-</br>
+<div class="container">
+        <table class="table table-light">
+            <thead>
+            <tr>
+                <th>Codigo de producto</th>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>Precio Unitario</th>
+            </tr>
+            </thead>
+            <tbody th:each="detalleProducto  :${detalleProducto}">
+            <tr>
+                <td th:text="${detalleProducto.articulo.id}"></td>
+                <td th:text="${detalleProducto.articulo.nombre}"></td>
+                <td th:text="${detalleProducto.cantidad}"></td>
+                <td th:text="'$' +  ${detalleProducto.articulo.precio}"></td>
+                <td class="d-inline-flex ">
+                    <a th:href="@{/api/v1/carrito/editar/{id}(id=${detalleProducto.id})}" class="btn btn-warning " >Editar</a>
+                    <a th:href="@{/api/v1/carrito/confirmarEliminar/{id}(id=${detalleProducto.id})}" class="btn btn-danger" >Eliminar</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="col-md-12" th:if="${detalleProducto.size() > 0}">
+            <a class="btn btn-success" th:href="@{/api/v1/carrito/realizarCompra}" th:onclick="realizarCompra()" style="width:100%">Realizar compra</a>
+        </div>
+        <div class="col-md-12 text-center">
+            <span th:unless="${detalleProducto.size() > 0}">No hay productos en el carrito!</span>
+        </div>
+        <br>
+        <br>
+</div>
 
 <nav th:replace="components/navbar :: footer "></nav>
 </body>

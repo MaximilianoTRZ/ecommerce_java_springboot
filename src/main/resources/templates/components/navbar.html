@@ -18,7 +18,7 @@
       <a class="nav-link" th:href="@{/api/v1/articulos/crud}" style="color: black;" sec:authorize="isAuthenticated() && hasRole('ROLE_ADMIN')">CRUD</a>
     </li>
     <li class="nav-item active">
-      <a class="nav-link" th:href="@{/api/v1/articulos/carrito}" style="color: black;" sec:authorize="isAuthenticated()">Carrito</a>
+      <a class="nav-link" th:href="@{/api/v1/carrito/detalle}" style="color: black;" sec:authorize="isAuthenticated()">Carrito</a>
     </li>
     <li class="nav-item active">
 		<a class="nav-link" th:href="@{/api/v1/cuenta/Signin}" style="color: black;" sec:authorize="!isAuthenticated()" >Iniciar Sesión</a>
@@ -38,7 +38,7 @@
 
 
 HTML
-<footer th:fragment="footer" class="bg-dark text-center text-white ">
+<footer th:fragment="footer" class="bg-dark text-center text-white " >
   <!-- Grid container -->
   <div class="container p-4 pb-0">
     <!-- Section: Social media -->

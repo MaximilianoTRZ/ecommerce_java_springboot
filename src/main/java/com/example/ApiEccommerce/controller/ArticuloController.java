@@ -1,8 +1,10 @@
 package com.example.ApiEccommerce.controller;
 
 import com.example.ApiEccommerce.entities.Articulo;
+import com.example.ApiEccommerce.entities.DetalleFactura;
 import com.example.ApiEccommerce.services.ArticuloServiceImpl;
 import com.example.ApiEccommerce.services.CategoriaService;
+import com.example.ApiEccommerce.services.DetalleFacturaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,6 +23,9 @@ public class ArticuloController extends BaseControllerImpl<Articulo, ArticuloSer
 
     @Autowired
     CategoriaService categoriaService;
+
+    @Autowired
+    DetalleFacturaService detalleFacturaService;
 
     /*Pagina de barra de busqueda sin paginar*/
     @GetMapping("/busqueda")
@@ -160,6 +165,22 @@ public class ArticuloController extends BaseControllerImpl<Articulo, ArticuloSer
             Articulo articulo = servicio.findById(id);
             model.addAttribute("detalleArticulo", articulo);
             return "views/detalleProducto";
+        } catch (Exception e) {
+            String mensaje = "hubo un error";
+            model.addAttribute("mensajeError", mensaje);
+            return "error";
+        }
+
+    }
+
+    @GetMapping("/agregarProducto/{id}")
+    public String agregarAlCarrito(Model model, @PathVariable("id") long id) {
+        try {
+            Articulo articulo = servicio.findById(id);
+            DetalleFactura detalleFactura = new DetalleFactura(1, articulo);
+            detalleFacturaService.save(detalleFactura);
+            model.addAttribute("detalleArticulo", articulo);
+            return "redirect:/api/v1/articulos/detalle/{id}";
         } catch (Exception e) {
             String mensaje = "hubo un error";
             model.addAttribute("mensajeError", mensaje);
