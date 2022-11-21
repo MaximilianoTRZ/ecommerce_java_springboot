@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://thymeleaf.org" xmlns:sec="http://thymeleaf.org/extras/spring-security">
+
+<header th:replace="components/header :: header "></header>
+<body style="display:flex;flex-direction: column; min-height: 100vh;max-width: 100%;">
+<nav th:replace="components/navbar :: nav_bar "></nav>
+
+<div class="container">
+    </br>
+    <div class="row">
+        <div class="col-md-3" th:each="articulo  :${nombreVariable}">
+            <div class="card">
+                <img class="card-img-top" th:src="${articulo.foto}" style="height:300px"  alt="img" >
+                <div class="card-body ">
+                    <h5 class="card-title text-truncate font-weight-bold" th:text="${articulo.nombre}">Nombre</h5>
+                    <h5 class="card-title " th:text="'$' + ${articulo.precio}">Precio</h5>
+                    <a th:href="@{/api/v1/articulos/detalle/{id}(id=${articulo.id})}" class="btn btn-primary mb-1 d-flex justify-content-center">Mas
+                        detalles</a>
+                </div>
+            </div>
+            </br>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 d-flex justify-content-center">
+            <nav aria-label="Pagination">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item" th:classappend="${prev == 0 ? 'disabled': ''}">
+                        <a class="page-link" th:href="@{|/api/v1/articulos/lista?page=${prev}|}">Anterior</a>
+                    </li>
+                    <li class="page-item" th:each="page : ${pages}" th:classappend="${current == page ? 'active': ''}">
+                        <a class="page-link" th:href="@{|/api/v1/articulos/lista?page=${page}|}" th:text="${page}"></a>
+                    </li>
+                    <li class="page-item" th:classappend="${current == last ? 'disabled': ''}">
+                        <a class="page-link" th:href="@{|/api/v1/articulos/lista?page=${next}|}">Siguiente</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+
+</div>
+
+<div th:replace="components/prefooter :: prefooter "></div>
+<nav th:replace="components/navbar :: footer "></nav>
+</body>
+</html>

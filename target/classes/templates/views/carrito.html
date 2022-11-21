@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://thymeleaf.org" xmlns:sec="http://thymeleaf.org/extras/spring-security">
+
+<header th:replace="components/header :: header "></header>
+<body>
+<nav th:replace="components/navbar :: nav_bar "></nav>
+
+<script th:inline="javascript">
+    function realizarCompra() {
+        alert('Compra realizada con exito!')
+    }
+</script>
+</br>
+<div class="container">
+        <table class="table table-light">
+            <thead>
+            <tr>
+                <th>Codigo de producto</th>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>Precio Unitario</th>
+            </tr>
+            </thead>
+            <tbody th:each="detalleProducto  :${detalleProducto}">
+            <tr>
+                <td th:text="${detalleProducto.articulo.id}"></td>
+                <td th:text="${detalleProducto.articulo.nombre}"></td>
+                <td th:text="${detalleProducto.cantidad}"></td>
+                <td th:text="'$' +  ${detalleProducto.articulo.precio}"></td>
+                <td class="d-inline-flex ">
+                    <a th:href="@{/api/v1/carrito/editar/{id}(id=${detalleProducto.id})}" class="btn btn-warning " >Editar</a>
+                    <a th:href="@{/api/v1/carrito/confirmarEliminar/{id}(id=${detalleProducto.id})}" class="btn btn-danger" >Eliminar</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="col-md-12" th:if="${detalleProducto.size() > 0}">
+            <a class="btn btn-success" th:href="@{/api/v1/carrito/realizarCompra}" th:onclick="realizarCompra()" style="width:100%">Realizar compra</a>
+        </div>
+        <div class="col-md-12 text-center">
+            <span th:unless="${detalleProducto.size() > 0}">No hay productos en el carrito!</span>
+        </div>
+        <br>
+        <br>
+</div>
+</br>
+<div th:replace="components/prefooter :: prefooter "></div>
+<nav th:replace="components/navbar :: footer "></nav>
+</body>
+</html>

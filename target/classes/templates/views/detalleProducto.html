@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://thymeleaf.org" xmlns:sec="http://thymeleaf.org/extras/spring-security">
+
+<header th:replace="components/header :: header "></header>
+<body style="display:flex;flex-direction: column; min-height: 100vh;max-width: 100%;">
+<nav th:replace="components/navbar :: nav_bar "></nav>
+<script th:inline="javascript">
+    function productoAgregado() {
+        alert('Producto agregado al carrito!')
+    }
+</script>
+
+<div class="container">
+    </br>
+    <div class="row mt-5" th:object="${detalleArticulo}">
+        <div class="col-md-4">
+            <img class="card-img-top" th:src="*{foto}" alt="img">
+        </div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title font-weight-bold" th:text="*{nombre}">Card title</h3>
+                    <h4 class="card-title" th:text="'Unidades disponibles: ' + *{stock}">Card title</h4>
+                    <h4 class="card-title" th:text="'$' + *{precio}">Card title</h4>
+                    <h5 class="card-title" th:text="*{descripcion}">Card title</h5>
+                    <a th:href="@{/api/v1/articulos/agregarProducto/{id}(id=${detalleArticulo.id})}" sec:authorize="isAuthenticated()" th:onclick="productoAgregado()" class="btn btn-info mb-1">Añadir a carrito</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </br>
+
+</div>
+
+<div th:replace="components/prefooter :: prefooter "></div>
+<nav th:replace="components/navbar :: footer "></nav>
+</body>
+</html>

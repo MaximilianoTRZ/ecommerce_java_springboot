@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+
+<head th:replace="components/header :: header "  >
+</head>
+
+<body>
+<nav th:replace="components/navbar :: nav_bar"></nav>
+
+<div class="container" style="
+    padding-right: 0;
+    padding-left: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top:0;
+    max-width: 100%;
+    width: 100%;
+">
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicadores -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <div class="carousel-inner">
+      <div class="item active">
+        <img th:src="@{${'/banner_298px1.jpg'}}" alt="Banner1" class="d-block w-100" style="width:100%;height: 298px;">
+      </div>
+
+      <div class="item">
+        <img th:src="@{${'/banner_298px3.jpg'}}" alt="Banner2" class="d-block w-100" style="width:100%;height: 298px;">
+      </div>
+
+      <div class="item">
+        <img th:src="@{${'/banner_298px2.jpg'}}" alt="Banner3"  class="d-block w-100" style="width:100%;height: 298px;">
+      </div>
+    </div>
+
+    <!-- Controles izquierda - derecha -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      <span class="sr-only">Anterior</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="sr-only">Siguiente</span>
+    </a>
+  </div>
+</div>
+
+<div class="container" >
+  <div class="row" style=
+          "margin-top: 55px;
+    ">
+    <div class="col-md-3" th:each="articulo  :${articulo}" >
+      <div class="card" >
+        <img class="card-img-top" th:src="${articulo.foto}" style="height:300px" alt="img" >
+        <div class="card-body ">
+          <h5 class="card-title text-truncate font-weight-bold" th:text="${articulo.nombre}">Nombre</h5>
+          <h4 class="card-title" th:text="'$' +${articulo.precio}">Precio</h4>
+          <a th:href="@{/api/v1/articulos/detalle/{id}(id=${articulo.id})}" class="btn btn-primary mb-1 d-flex justify-content-center">Mas detalles</a>
+        </div>
+      </div>
+      </br>
+    </div>
+
+  </div>
+</div>
+
+<div th:replace="components/prefooter :: prefooter "></div>
+<nav th:replace="components/navbar :: footer "></nav>
+
+
+</body>
+</html>
