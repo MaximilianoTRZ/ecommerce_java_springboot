@@ -1,9 +1,11 @@
 package com.example.ApiEccommerce.controller;
 
 import com.example.ApiEccommerce.entities.Articulo;
+import com.example.ApiEccommerce.entities.DetalleCarrito;
 import com.example.ApiEccommerce.entities.DetalleFactura;
 import com.example.ApiEccommerce.services.ArticuloServiceImpl;
 import com.example.ApiEccommerce.services.CategoriaService;
+import com.example.ApiEccommerce.services.DetalleCarritoService;
 import com.example.ApiEccommerce.services.DetalleFacturaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,6 +25,9 @@ public class ArticuloController extends BaseControllerImpl<Articulo, ArticuloSer
 
     @Autowired
     CategoriaService categoriaService;
+
+    @Autowired
+    DetalleCarritoService detalleCarritoService;
 
     @Autowired
     DetalleFacturaService detalleFacturaService;
@@ -177,8 +182,8 @@ public class ArticuloController extends BaseControllerImpl<Articulo, ArticuloSer
     public String agregarAlCarrito(Model model, @PathVariable("id") long id) {
         try {
             Articulo articulo = servicio.findById(id);
-            DetalleFactura detalleFactura = new DetalleFactura(1, articulo);
-            detalleFacturaService.save(detalleFactura);
+            DetalleCarrito detalleCarrito = new DetalleCarrito(1, articulo);
+            detalleCarritoService.save(detalleCarrito);
             model.addAttribute("detalleArticulo", articulo);
             return "redirect:/api/v1/articulos/detalle/{id}";
         } catch (Exception e) {
