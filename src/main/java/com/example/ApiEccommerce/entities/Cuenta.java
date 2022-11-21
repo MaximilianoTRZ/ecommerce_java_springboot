@@ -10,7 +10,7 @@ import javax.persistence.*;
 
 import java.util.Collection;
 import java.util.Date;
-
+import java.util.List;
 
 
 @Data
@@ -38,4 +38,6 @@ public class Cuenta extends Base{
             inverseJoinColumns = @JoinColumn(name = "rol_id",referencedColumnName = "id")
     )
     private Collection<Rol> roles;
+
+
 }

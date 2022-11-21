@@ -24,7 +24,7 @@
 		<a class="nav-link" th:href="@{/api/v1/cuenta/Signin}" style="color: black;" sec:authorize="!isAuthenticated()" >Iniciar Sesión</a>
     </li>    
     <li class="nav-item active">
-      <a class="nav-link" th:href="@{/api/v1/articulos/signup}" style="color: black;" sec:authorize="!isAuthenticated()" >Registrarse</a>
+      <a class="nav-link" th:href="@{/api/v1/clientes/nuevo}" style="color: black;" sec:authorize="!isAuthenticated()" >Registrarse</a>
     </li>
     <li class="nav-item ">
       <h4 class="nav-link" href="#" ><span sec:authorize="isAuthenticated()" sec:authentication="name"></span></h4>
