@@ -1,0 +1,68 @@
+<nav th:fragment="nav_bar" class="navbar navbar-expand-lg navbar-dark bg-primary d-flex justify-content-between"
+     style="margin-bottom: 0" xmlns="http://www.w3.org/1999/html">
+    <img th:src="${'/logo-franco.png'}" alt="" style="width:75px;height: 75px;">
+    <ul class="nav navbar-nav">
+        <li class="nav-item active">
+            <a class="nav-link" th:href="@{/api/v1/inicio}" style="color: black;">Home </a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" th:href="@{/api/v1/articulos/lista}" style="color: black">Productos</a>
+        </li>
+    </ul>
+    <form class="d-inline-flex " style="width: 60%" th:action="@{/api/v1/articulos/busqueda}">
+        <input class="form-control mr-sm-2" type="search" placeholder="Buscar camiseta" aria-label="Search"
+               style="width: 80%" name="query">
+        <button class="btn btn-outline-secundary my-2 my-sm-0" type="submit" style="color: black;">Buscar</button>
+    </form>
+
+    <ul class="nav navbar-nav">
+        <li class="nav-item active">
+            <a class="nav-link" th:href="@{/api/v1/articulos/crud}" style="color: black;"
+               sec:authorize="isAuthenticated() && hasRole('ROLE_ADMIN')">CRUD</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" th:href="@{/api/v1/carrito/detalle}" style="color: black;"
+               sec:authorize="isAuthenticated()">Carrito</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" th:href="@{/api/v1/cuenta/Signin}" style="color: black;"
+               sec:authorize="!isAuthenticated()">Iniciar Sesión</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" th:href="@{/api/v1/clientes/nuevo}" style="color: black;"
+               sec:authorize="!isAuthenticated()">Registrarse</a>
+        </li>
+        <li class="nav-item ">
+            <h4 class="nav-link" href="#"><span sec:authorize="isAuthenticated()" sec:authentication="name"></span></h4>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" th:href="@{/api/v1/cuenta/Signin/logout}" style="color: black;"
+               sec:authorize="isAuthenticated()">Cerrar Sesión</a>
+        </li>
+
+    </ul>
+</nav>
+
+
+HTML
+<footer th:fragment="footer" class="bg-dark text-center text-white ">
+    <!-- Grid container -->
+    <div class="container p-4 pb-0">
+        <!-- Section: Social media -->
+        <section class="footer_wrapperBottom__Dh62T">
+            <div class="footer_content__2jt_i">
+                <section class="footer-bottom_content__m3NDi">
+                    <div class="footer-bottom_containerText__8Midz"><h2 class="footer-bottom_title__2Z6Mm"> COMPRA 100%
+                        SEGURA</h2>
+                        <p class="footer-bottom_textContent__2-2_6">©2022 Copyright: www.mastersport.com, <strong>TODOS LOS
+                            DERECHOS RESERVADOS.</strong>Está prohibida la reproducción total o parcial del contenido de
+                            esta pagina web, sin la expresa <br> autorizacion de la administracion de la tienda virtual.
+                            <br> Provincia de Mendoza - Argentina.
+                            <br>
+                        </p>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </div>
+</footer>

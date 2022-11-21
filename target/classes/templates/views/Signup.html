@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://thymeleaf.org" xmlns:sec="http://thymeleaf.org/extras/spring-security">
+
+<header th:replace="components/header :: header "></header>
+<body>
+<nav th:replace="components/navbar :: nav_bar "></nav>
+
+<div class="container">
+    </br>
+    <form th:action="@{/api/v1/clientes/guardarCliente}" th:object="${nuevoCliente}" method="post">
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="First name" value="Mark"
+                       required th:field="*{nombre}">
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="apellido">Apellido</label>
+                <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Last name" value="Otto"
+                       required th:field="*{apellido}">
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="dni">DNI</label>
+                <input type="number" class="form-control" id="dni" name="dni" placeholder="Last name" value="Otto"
+                       th:field="*{dni}">
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="direccion">Direccion</label>
+                <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Last name" value="Otto"
+                       required th:field="*{domicilio.direccion}">
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="nroCasa">Numero de casa</label>
+                <input type="number" class="form-control" id="nroCasa" name="nroCasa" placeholder="Last name" value="Otto"
+                       required th:field="*{domicilio.numero}">
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" id="email" name="email" placeholder="Last name" value="Otto"
+                       required th:field="*{cuenta.email}">
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="password">Contraseña</label>
+                <input type="text" class="form-control" id="password" name="password" placeholder="Last name" value="Otto"
+                       required th:field="*{cuenta.password}">
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Submit form</button>
+    </form>
+    </br>
+</div>
+
+<nav th:replace="components/navbar :: footer "></nav>
+</body>
+</html>

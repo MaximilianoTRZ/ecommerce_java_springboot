@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://thymeleaf.org" xmlns:sec="http://thymeleaf.org/extras/spring-security">
+
+
+<meta charset="utf-8">
+<header th:replace="components/header :: header "></header>
+<title>Inicio de sesión</title>
+
+
+<body>
+<nav th:replace="components/navbar :: nav_bar "></nav>
+<br>
+<br>
+
+<div class="bg-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('https://s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2018/01/26091448/Argentina-Holanda-hinchada-Brasil-2014-1920-1.jpg');height: 100vh;margin-top: -127px;">
+
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100" >
+            <div class="col-xl-10">
+                <div class="card rounded-3 text-black mt-5" style="width:100%;margin-top:-200px;border-radius: 20px;">
+                    <div class="row g-0"  style="width:600px">
+                        <div class="col-lg-6" style="margin-left: auto;">
+                            <div class="card-body p-md-5 mx-md-4">
+                            </div>
+                            <form th:action="@{/api/v1/cuenta/Signin/verificar}" method="post">
+                                <p>Por favor ingrese su cuenta</p>
+                                <div th:if=${param.error}>
+                                    <div class="alert alert-danger">Usuario o contraseña
+                                        inválidos</div>
+                                </div>
+
+                                <div th:if=${param.logout}>
+                                    <div class="alert alert-info">Ha cerrado sesión exitosamente
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label  for="username">Nombre de
+                                        usuario : </label> <input id="username"  name="username" type="text" class="form-control"
+                                                                  required autofocus="autofocus" placeholder="Ingrese su email o usuario">
+                                </div>
+
+                                <div class="form-group">
+                                    <label  for="password">Password : </label> <input
+                                        id="password" type="password"  name="password" class="form-control" required
+                                        autofocus="autofocus" placeholder="Ingrese su contraseña">
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6 col-md-offset-3">
+                                            <input type="submit" class="form-control btn btn-primary" name="login-submit" id="login-submit"
+                                                   value="Iniciar sesión" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="text-center pt-1 mb-5 pb-1">
+                                <a class="text-muted" href="#!">¿Olvidaste la contraseña?</a>
+                            </div>
+
+                            <div class="d-flex align-items-center justify-content-center pb-4">
+                                <p class="mb-0 me-2">¿No tenés cuenta?</p>
+                                <a class="nav-link" th:href="@{/api/v1/articulos/signup}">Registrate</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+</body>
+</html>
