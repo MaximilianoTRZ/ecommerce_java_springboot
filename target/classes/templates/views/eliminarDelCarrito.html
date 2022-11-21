@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://thymeleaf.org" xmlns:sec="http://thymeleaf.org/extras/spring-security">
+
+<header th:replace="components/header :: header "></header>
+<body style="display:flex;flex-direction: column; min-height: 100vh;max-width: 100%;">
+<nav th:replace="components/navbar :: nav_bar "></nav>
+
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <form  >
+            <div class="row g-3 text-center">
+              <div class="form-group col-md-12">
+                <h4>¿Esta seguro de eliminar del carrito? </h4>
+              </div>
+            </div>
+            <div class="row m-3">
+              <div class="col-md-6">
+                <a th:href="@{/api/v1/carrito/eliminar/{id}(id=${detalleFactura.id})}"  class="btn btn-danger " style="width:100%">Si</a>
+              </div>
+              <div class="col-md-6">
+                <a th:href="@{/api/v1/carrito/detalle}" class="btn btn-success"  style="width:100%">No</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+
+<nav th:replace="components/navbar :: footer "></nav>
+</body>
+</html>

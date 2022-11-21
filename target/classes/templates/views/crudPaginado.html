@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://thymeleaf.org/extras/spring-security">
+<header th:replace="components/header :: header "></header>
+<body style="display:flex;flex-direction: column; min-height: 100vh;max-width: 100%;">
+<nav th:replace="components/navbar :: nav_bar "></nav>
+
+</br>
+<!--- boton añadir -->
+<div class="container">
+    <div class="col-md-12">
+        <div class="col-md-4">
+            <a th:href="@{/api/v1/articulos/nuevo}" class="btn btn-success " sec:authorize="hasRole('ROLE_ADMIN')">Añadir nuevo producto</a>
+        </div>
+    </div>
+</div>
+
+</br>
+<!--- tabla -->
+<div class="container">
+    <table class="table table-light">
+        <thead>
+        <tr>
+            <th>Codigo de producto</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Precio Unitario</th>
+            <th>Accion</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="articulo  :${nombreVariable}">
+            <td th:text="${articulo.id}"></td>
+            <td th:text="${articulo.nombre}"></td>
+            <td th:text="${articulo.descripcion}">3</td>
+            <td th:text="${articulo.precio}">15000</td>
+            <td class="d-inline-flex ">
+                <a th:href="@{/api/v1/articulos/editar/{id}(id=${articulo.id})}" class="btn btn-warning " >Editar</a>
+                <a th:href="@{/api/v1/articulos/confirmarEliminar/{id}(id=${articulo.id})}" class="btn btn-danger" >Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!--- paginacion -->
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 d-flex justify-content-center">
+            <nav aria-label="Pagination">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item" th:classappend="${prev == 0 ? 'disabled': ''}">
+                        <a class="page-link" th:href="@{|/api/v1/articulos/crud?page=${prev}|}">Anterior</a>
+                    </li>
+                    <li class="page-item" th:each="page : ${pages}" th:classappend="${current == page ? 'active': ''}">
+                        <a class="page-link" th:href="@{|/api/v1/articulos/crud?page=${page}|}" th:text="${page}"></a>
+                    </li>
+                    <li class="page-item" th:classappend="${current == last ? 'disabled': ''}">
+                        <a class="page-link" th:href="@{|/api/v1/articulos/crud?page=${next}|}">Siguiente</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+
+<div th:replace="components/prefooter :: prefooter "></div>
+<nav th:replace="components/navbar :: footer "></nav>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://thymeleaf.org" xmlns:sec="http://thymeleaf.org/extras/spring-security">
+
+<header th:replace="components/header :: header "></header>
+<body style="display:flex;flex-direction: column; min-height: 100vh;max-width: 100%;">
+<nav th:replace="components/navbar :: nav_bar "></nav>
+
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <!-- en th:action lo que hace en este caso es mandar al metodo post de guardarArticulo -->
+                    <form th:action="@{/api/v1/articulos/guardarArticulo}" th:object="${nuevoArticulo}" method="post">
+                        <div class="row">
+
+                            <div class="form-group col-md-12">
+                                <label for="titulo">Titulo:</label>
+                                <input type="text" class="form-control" id="titulo" th:field="*{nombre}">
+                                <div class="text-danger"></div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <label for="foto">Foto:</label>
+                                <input type="text" class="form-control" id="foto" th:field="*{foto}">
+                                <div class="text-danger"></div>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="categoria">Categoria: </label>
+                                <!--- El th:field en este caso se queda con el objeto categoria seleccionado --->
+                                <select class="form-control " id="categoria" th:field="*{categoria}">
+                                    <option th:each="categoria: ${categorias}" th:value="${categoria.id}"
+                                            th:text="${categoria.nombreCategoria}">tipos de categorias
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <label for="precio">Precio:</label>
+                                <input type="number" class="form-control" id="precio" th:field="*{precio}">
+                                <div class="text-danger"></div>
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <label for="stock">Stock:</label>
+                                <input type="number" class="form-control" id="stock" th:field="*{stock}"
+                                       placeholder="todavia no existe en la bd">
+                                <div class="text-danger"></div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <label for="descripcion">Descripción: </label>
+                                <textarea class="form-control" id="descripcion" rows="5"
+                                          th:field="*{descripcion}"></textarea>
+                                <div class="text-danger"></div>
+                            </div>
+                        </div>
+
+                        <div class="row m-3">
+                            <div class="col-md-6">
+                                <button class="btn btn-outline-secondary" type="reset" style="width:100%">Resetear
+                                    Formulario
+                                </button>
+                            </div>
+
+                            <div class="col-md-6">
+                                <button class="btn btn-success" type="submit" style="width:100%">Guardar</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<nav th:replace="components/navbar :: footer "></nav>
+</body>
+</html>

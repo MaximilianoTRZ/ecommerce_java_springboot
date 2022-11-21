@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://thymeleaf.org" xmlns:sec="http://thymeleaf.org/extras/spring-security">
+
+<header th:replace="components/header :: header "></header>
+<body style="display:flex;flex-direction: column; min-height: 100vh;max-width: 100%;">
+
+<nav th:replace="components/navbar :: nav_bar "></nav>
+
+<div class="container">
+    </br>
+    <div class="row ">
+        <div class="col-md-3" th:each="articulo  :${listaArticulos}" >
+            <div class="card" >
+                <img class="card-img-top" th:src="${articulo.foto}" alt="img" style="height:300px">
+                <div class="card-body ">
+                    <h5 class="card-title" th:text="${articulo.nombre}">Card title</h5>
+                    <a th:href="@{/api/v1/articulos/detalle/{id}(id=${articulo.id})}" class="btn btn-primary mb-1">Mas detalles</a>
+                    <a href="#" class="btn btn-warning" sec:authorize="isAuthenticated()">Añadir a carrito</a>
+                </div>
+            </div>
+            </br>
+        </div>
+
+    </div>
+</div>
+
+
+<div th:replace="components/prefooter :: prefooter "></div>
+<nav th:replace="components/navbar :: footer "></nav>
+
+
+</body>
+</html>
