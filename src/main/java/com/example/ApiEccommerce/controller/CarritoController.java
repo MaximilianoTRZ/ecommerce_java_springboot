@@ -4,6 +4,8 @@ import com.example.ApiEccommerce.entities.Articulo;
 import com.example.ApiEccommerce.entities.Cliente;
 import com.example.ApiEccommerce.entities.DetalleFactura;
 import com.example.ApiEccommerce.entities.Factura;
+import com.example.ApiEccommerce.entities.DetalleCarrito;
+import com.example.ApiEccommerce.entities.Carrito;
 import com.example.ApiEccommerce.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +19,8 @@ import java.util.List;
 @RequestMapping(path = "api/v1/carrito")
 public class CarritoController extends BaseControllerImpl<Articulo, ArticuloServiceImpl> {
 
-
+    @Autowired
+    DetalleCarritoService detalleCarritoService;
     @Autowired
     DetalleFacturaService detalleFacturaService;
     @Autowired
@@ -29,8 +32,8 @@ public class CarritoController extends BaseControllerImpl<Articulo, ArticuloServ
     public String carritoArticulos(Model model) {
         try {
 
-            List<DetalleFactura> listDetalleFactura = detalleFacturaService.findAll();
-            model.addAttribute("detalleProducto", listDetalleFactura);
+            List<DetalleCarrito> listDetalleCarrito = detalleCarritoService.findAll();
+            model.addAttribute("detalleProducto", listDetalleCarrito);
 
             return "views/carrito";
         } catch (Exception e) {
@@ -44,11 +47,30 @@ public class CarritoController extends BaseControllerImpl<Articulo, ArticuloServ
     @GetMapping("/realizarCompra")
     public String realizarCompra(Model model) {
         try {
+
+            // borramos el carrito y creamos una factura
+            List<DetalleCarrito> listDetalleCarrito = detalleCarritoService.findAll();
+
+            for (DetalleCarrito detalleCarrito: listDetalleCarrito) {
+
+                Articulo articulo = detalleCarrito.getArticulo();
+                int cantidad = detalleCarrito.getCantidad();
+
+                //creamos el detalle factura para ese articulo y lo guardamos
+                DetalleFactura newDetalleFact = new DetalleFactura(cantidad,articulo);
+                detalleFacturaService.save(newDetalleFact);
+
+                //borramos el articulo del carrito
+                detalleCarritoService.delete(detalleCarrito.getId());
+
+            }
+
             List<Factura> listFactura = facturaService.findAll();
             int nroFactura = listFactura.size() > 1 ? listFactura.size() + 1 : 1;
 
             Cliente cliente = clienteService.findById(1l);
             List<DetalleFactura> listDetalleFactura = detalleFacturaService.findAll();
+
             Factura factura = new Factura(nroFactura, listDetalleFactura, cliente);
             facturaService.save(factura);
 
@@ -66,7 +88,7 @@ public class CarritoController extends BaseControllerImpl<Articulo, ArticuloServ
     @GetMapping("/editar/{id}")
     public String editarCarrito(@PathVariable long id, Model model) {
         try {
-            model.addAttribute("detalleProducto", detalleFacturaService.findById(id));
+            model.addAttribute("detalleProducto", detalleCarritoService.findById(id));
             return "views/formulario_editar_carrito";
         } catch (Exception e) {
             String mensaje = "hubo un error";
@@ -75,11 +97,11 @@ public class CarritoController extends BaseControllerImpl<Articulo, ArticuloServ
         }
     }
     @PostMapping("/actualizarDetalleProducto/{id}")
-    public String ActualizarDetalleProducto(@PathVariable long id, @ModelAttribute("detalleProducto") DetalleFactura detalleProducto, Model model) throws Exception {
-        DetalleFactura detalleFacturaExistente = detalleFacturaService.findById(id);
-        detalleFacturaExistente.setCantidad(detalleProducto.getCantidad());
+    public String ActualizarDetalleProducto(@PathVariable long id, @ModelAttribute("detalleProducto") DetalleCarrito detalleProducto, Model model) throws Exception {
+        DetalleCarrito detalleCarritoExistente = detalleCarritoService.findById(id);
+        detalleCarritoExistente.setCantidad(detalleProducto.getCantidad());
 
-        detalleFacturaService.update(id, detalleFacturaExistente);
+        detalleCarritoService.update(id, detalleCarritoExistente);
         return "redirect:/api/v1/carrito/detalle";
     }
     //fin funcion editar
@@ -89,7 +111,7 @@ public class CarritoController extends BaseControllerImpl<Articulo, ArticuloServ
     @GetMapping("/confirmarEliminar/{id}")
     public String confirmarEliminar(@PathVariable long id, Model model) {
         try {
-            model.addAttribute("detalleFactura", detalleFacturaService.findById(id));
+            model.addAttribute("detalleFactura", detalleCarritoService.findById(id));
             return "views/eliminarDelCarrito";
         } catch (Exception e) {
             String mensaje = "hubo un error";
@@ -101,7 +123,7 @@ public class CarritoController extends BaseControllerImpl<Articulo, ArticuloServ
     @GetMapping("/eliminar/{id}")
     public String eliminar(@PathVariable long id) {
         try {
-            detalleFacturaService.delete(id);
+            detalleCarritoService.delete(id);
             return "redirect:/api/v1/carrito/detalle";
         } catch (Exception e) {
             return "error";
