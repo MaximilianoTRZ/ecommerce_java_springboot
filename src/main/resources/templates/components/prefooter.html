@@ -1,0 +1,47 @@
+<div th:fragment="prefooter">
+  <section>
+    <div>
+      <img th:src="@{${'/banner.jpg'}}" alt="" class="img-fluid">
+
+    </div>
+  </section>
+  <div class="container" style="
+    padding-right: 0;
+    padding-left: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top:0px;
+    max-width: 100%;
+    width: 100%;">
+    <div id="myCarousel2" class="carousel slide" data-ride="carousel">
+      <!-- Indicadores -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel2" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel2" data-slide-to="1"></li>
+      </ol>
+      <!-- Entorno para las diapositivas -->
+      <div class="carousel-inner">
+        <div class="item active">
+          <img th:src="@{${'/banner_110px1.jpg'}}" alt="" class="d-block w-100"
+               style="width:100%;height: 110px;">
+        </div>
+
+        <div class="item">
+          <img th:src="@{${'/banner_110px2.jpg'}}" alt="" class="d-block w-100"
+               style="width:100%;height: 110px;">
+        </div>
+
+        <!-- Controles izquierda - derecha -->
+        <a class="left carousel-control" href="#myCarousel2" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+          <span class="sr-only">Anterior</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel2" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+          <span class="sr-only">Siguiente</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
