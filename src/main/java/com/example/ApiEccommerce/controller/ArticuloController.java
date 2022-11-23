@@ -12,8 +12,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.naming.Binding;
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -38,9 +41,7 @@ public class ArticuloController extends BaseControllerImpl<Articulo, ArticuloSer
         try {
             List<Articulo> articulos = servicio.findByTitle(q);
             model.addAttribute("listaArticulos", articulos);
-            //boolean a = true;
-            //if (a)
-            //throw new Exception("aaaaaa");
+
 
             return "views/busqueda";
         } catch (Exception e) {
@@ -194,3 +195,8 @@ public class ArticuloController extends BaseControllerImpl<Articulo, ArticuloSer
 
     }
 }
+
+
+//boolean a = true;
+//if (a)
+//throw new Exception("aaaaaa");

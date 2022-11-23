@@ -2,6 +2,8 @@ package com.example.ApiEccommerce.controller;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,8 +24,10 @@ public class HomeController extends BaseControllerImpl<Articulo, ArticuloService
         try {
             String usuario = "Master";
             model.addAttribute("nombreVariable", usuario);
-            List<Articulo> articulo = servicio.findAll();
-            model.addAttribute("articulo", articulo);
+
+            PageRequest pageRequest = PageRequest.of(0, 8);
+            Page<Articulo> pageArticulo = servicio.findAll(pageRequest);
+            model.addAttribute("articulo", pageArticulo);
 
             return "views/inicio"; //ACA TIENE QUE IR EL NOMBRE DE LA PLANTILLA DONDE SE QUIERE USAR
         } catch (Exception e) {

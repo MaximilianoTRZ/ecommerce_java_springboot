@@ -1,51 +1,83 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://thymeleaf.org" xmlns:sec="http://thymeleaf.org/extras/spring-security">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <header th:replace="components/header :: header "></header>
-<body class="img" style="background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('https://wallpaperaccess.com/full/1398610.jpg');">
+
+<body class="img"
+      style="background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('https://wallpaperaccess.com/full/1398610.jpg');">
 <nav th:replace="components/navbar :: nav_bar "></nav>
+
+<script>
+  function mostrarContrasena(){
+      var tipo = document.getElementById("password");
+      if(tipo.type == "password"){
+          tipo.type = "text";
+          $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+      }else{
+          tipo.type = "password";
+          $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+      }
+  }
+
+
+</script>
 
 <div class="container" style="background-color:white; margin-top:5rem; border-radius: 20px;">
     </br>
     <form th:action="@{/api/v1/clientes/guardarCliente}" th:object="${nuevoCliente}" method="post">
         <div class="form-row">
-            <div class="col-md-4 mb-3">
+            <div class="col-md-6 mb-3">
                 <label for="nombre">Nombre</label>
                 <input type="text" class="form-control" id="nombre" name="nombre" placeholder="first name" value="Mark"
                        required th:field="*{nombre}">
             </div>
-            <div class="col-md-4 mb-3">
+            <div class="col-md-6 mb-3">
                 <label for="apellido">Apellido</label>
-                <input type="text" class="form-control" id="apellido" name="apellido" placeholder="last name" value="Otto"
+                <input type="text" class="form-control" id="apellido" name="apellido" placeholder="last name"
+                       value="Otto"
                        required th:field="*{apellido}">
             </div>
-            <div class="col-md-4 mb-3">
+            <div class="col-md-6 mb-3">
                 <label for="dni">DNI</label>
                 <input type="number" class="form-control" id="dni" name="dni" value="Otto"
                        th:field="*{dni}">
             </div>
-            <div class="col-md-4 mb-3">
+            <div class="col-md-8 mb-3">
                 <label for="direccion">Direccion</label>
-                <input type="text" class="form-control" id="direccion" name="direction" placeholder="direction" value="Otto"
+                <input type="text" class="form-control" id="direccion" name="direction" placeholder="direction"
+                       value="Otto"
                        required th:field="*{domicilio.direccion}">
             </div>
             <div class="col-md-4 mb-3">
                 <label for="nroCasa">Numero de casa</label>
-                <input type="number" class="form-control" id="nroCasa" name="nroCasa" value="Otto"
+                <input type="number" class="form-control" id="nroCasa" name="nroCasa" placeholder="dni" value="Otto"
                        required th:field="*{domicilio.numero}">
             </div>
-            <div class="col-md-4 mb-3">
+            <div class="col-md-6 mb-3">
                 <label for="email">Email</label>
-                <input type="text" class="form-control" id="email" name="email" placeholder="email" value="Otto"
+                <input type="email" class="form-control" id="email" name="email" placeholder="email" value="Otto"
                        required th:field="*{cuenta.email}">
             </div>
-            <div class="col-md-4 mb-3">
+            <div class="col-md-6 mb-3">
                 <label for="password">Contraseña</label>
-                <input type="text" class="form-control" id="password" name="password" placeholder="password" value="Otto"
-                       required th:field="*{cuenta.password}">
+                <div class="d-flex">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="password"
+                           value="Otto"
+                           required th:field="*{cuenta.password}">
+                    <button class="btn btn-primary" type="button" onclick="mostrarContrasena()"><span class="fa fa-eye-slash icon"></span></button>
+                </div>
+
             </div>
+
         </div>
-        <button class="btn btn-primary" type="submit">Registrarse</button>
+
+
+        <br>
+        <div class="d-flex justify-content-center">
+            <button class="btn btn-primary" type="submit">Registrarse</button>
+        </div>
     </form>
     </br>
 </div>
