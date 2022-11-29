@@ -1,6 +1,8 @@
 # Master Sport Ecommerce ⚡
 
-https://grupo4mastersport-production.up.railway.app/api/v1/inicio
+Video: https://youtu.be/b7iS6eSo7dg
+
+Tienda: https://grupo4mastersport-production.up.railway.app/api/v1/inicio
 
 
 ## Grupo_4 
