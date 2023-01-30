@@ -2,40 +2,34 @@
 
 Video: https://youtu.be/b7iS6eSo7dg
 
-Tienda: https://grupo4mastersport-production.up.railway.app/api/v1/inicio
+Despliegue de la Tienda: https://grupo4mastersport-production.up.railway.app/api/v1/inicio
 
 
 ## Grupo Software Labs
 
 Nuestro sitio web se dedicará principalmente a la comercialización camisteas de fútbol de las selecciones de todo el mundo. También existe la posibilidad en un futuro, de ampliar el negocio a camisetas de los clubes más reconocidos de Argentina. Nuestro público objetivo son todos aquellos apasionados por el fútbol mundial y seguidores de las competiciones entre países.
 
+## Tecnologías
+- Java
+- Spring Boot
+- Maven
+- MySQL
+- Hibernate (JPA)
+- HTML
+- CSS
+- Thymeleaf
+
+## Patrones aplicados
+- Inyección de dependencias
+- Builder
+- DTO
+- DAO
 
 **Integrantes del equipo**
-
-- Maximiliano Rivero: 
-      - Estudiante de 5to año.
-      - Manejo de lenguajes Nodejs, Java, Python.
-      - Manejo de Inglés: intermedio.
-      - Preferencias: Me interesa cada parte del desarrollo de software, pero tengo especial interes en el backend aplicando lo aprendido en la carrera.
-
-- Franco Herrera:
-      - Estudiante de 4to año.
-      - Manejo de lenguajes Java, Python.
-      - Conocimiento de tecnológias como git/github, SQL.
-      - Manejo de Inglés: avanzado
-      - Preferencias: me gusta mas backend, todos los proyectos que he hecho han sido de back.      
-
-- Iván Leal:
-      - Estudiante de 4to año
-      - Manejo de los lenguajes y tecnologías (básico); Java, HTML/CSS/JS, SQL, Git y Github, Python
-      - Manejo de Inglés: intermedio
-      - Preferencias: Me interesa mas el backend, pero tambien la parte de frontend para darle una buena experiencia de usuario al cliente.
-
-- Leandro Cocucci:
-      - Estudiante de 4to año
-      - Manejo de los lenguajes y tecnologías (básico); Java, HTML/CSS/JS, SQL, Git y Github
-      - Manejo de Inglés: básico/intermedio
-      - Preferencias: interesado tanto en el desarrollo frontend como backend
+- Maximiliano Rivero
+- Franco Herrera  
+- Iván Leal
+- Leandro Cocucci
 
 
 **Sitios de referencia**
